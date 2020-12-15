@@ -2,7 +2,7 @@
     <div class="header">
         <!-- 折叠图片 -->
         <div class="collapse-btn" @click="collapseChange">
-            <i class="el-icon-menu"></i>
+            <i class="el-icon-s-fold"></i>
         </div>
         <div class="logo">music后台管理</div>
         <div class="header-right">
@@ -86,7 +86,7 @@ export default {
 <style scoped>
 .header{
     position: relative;
-    background-color: #253041;
+    background-color:#f83b3b;
     box-sizing: border-box;
     width: 100%;
     height: 70px;

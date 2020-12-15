@@ -4,7 +4,7 @@
             class="sidebar-el-menu"
             :default-active="onRoutes"
             :collapse="collapse"
-            background-color="#334256"
+            background-color=" #b1e5fa"
             text-color="#ffffff"
             active-text-color="#20a0ff"
             router
@@ -30,17 +30,17 @@ export default {
             collapse: false,
             items:[
                 {
-                    icon: 'el-icon-document',
+                    icon: 'el-icon-menu',
                     index: 'Info',
                     title: '系统首页'
                 },
                 {
-                    icon: 'el-icon-document',
+                    icon: 'el-icon-user',
                     index: 'Consumer',
                     title: '用户管理'
                 },
                 {
-                    icon: 'el-icon-document',
+                    icon: 'el-icon-user-solid',
                     index: 'Singer',
                     title: '歌手管理'
                 },
@@ -74,7 +74,7 @@ export default {
     left: 0;
     top: 70px;
     bottom: 0;
-    background-color: #334256;
+    background-color: #b1e5fa;
     overflow-y: scroll;
 }
 
