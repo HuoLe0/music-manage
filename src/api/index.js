@@ -17,6 +17,8 @@ export const delSinger = (id) => get(`singer/delete?id=${id}`);
 //============歌曲相关================
 //根据歌手id查询歌曲
 export const songOfSingerId =(id) => get(`song/songOfSingerId?singerId=${id}`);
+//更新歌曲
+export const updateSongUrl = (id) => post(`song/updateSongUrl?id=${id}`);
 //编辑歌曲
 export const updateSong = (params) => post(`song/update`,params);
 //删除歌曲
@@ -24,7 +26,7 @@ export const delSong = (id) => get(`song/delete?id=${id}`);
 //根据歌曲id查询歌曲对象
 export const songOfSongId =(id) => get(`song/selectByPrimaryKey?id=${id}`);
 //根据歌曲名获取歌曲对象
-export const songOfSongName =(songName) => get(`song/songOfName?songName=${songName}`);
+export const songOfSongName =(name) => get(`song/songOfName?name=${name}`);
 //查询所有歌曲
 export const allSong =() => get(`song/allSong`);
 

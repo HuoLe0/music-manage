@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
+        // HOST: 'http://10.206.154.159:9528',
         HOST: 'http://127.0.0.1:8888',
         isPlay: false,          //是否播放中
         url: '',                //歌曲地址

@@ -77,22 +77,18 @@
 
         <el-dialog title="添加歌曲" :visible.sync="centerDialogVisible" width="400px" center>
             <el-form :model="registerForm" ref="registerForm" label-width="80px" action="" id="tf">
-                <div>
-                    <label>歌名</label>
-                    <el-input type="text" name="name"></el-input>
-                </div>
-                <div>
-                    <label>专辑</label>
-                    <el-input type="text" name="introduction"></el-input>
-                </div>
-                <div>
-                    <label>歌词</label>
-                    <el-input type="textarea" name="lyric"></el-input>
-                </div>
-                <div>
-                    <label>歌曲上传</label>
+                <el-form-item prop="name" label="歌名" size="mini">
+                    <el-input v-model="registerForm.name" placeholder="歌名"></el-input>
+                </el-form-item>
+                <el-form-item prop="introduction" label="专辑" size="mini">
+                    <el-input v-model="registerForm.introduction" placeholder="专辑"></el-input>
+                </el-form-item>     
+                <el-form-item prop="lyric" label="歌词" size="mini">
+                    <el-input v-model="registerForm.lyric" placeholder="歌词" type="textarea"></el-input>
+                </el-form-item> 
+                <el-form-item label="上传歌曲" size="mini">
                     <input type="file" name="file">
-                </div>
+                </el-form-item>               
             </el-form>
             <span slot="footer">
                 <el-button size="mini" @click="centerDialogVisible = false">取消</el-button>
@@ -133,7 +129,7 @@
 import { mixin } from '../mixins/index';
 import {mapGetters} from 'vuex';
 import '@/assets/js/iconfont.js';
-import {songOfSingerId,updateSong,delSong} from '../api/index';
+import {songOfSingerId,updateSong,delSong, updateSongUrl} from '../api/index';
 
 export default {
     mixins: [mixin],
@@ -218,10 +214,14 @@ export default {
             let _this = this;
             var form = new FormData(document.getElementById('tf'));
             form.append('singerId',this.singerId);
-            form.set('name',this.singerName+'-'+form.get('name'));
-            if(!form.get('lyric')){
+            form.append('introduction',this.registerForm.introduction)
+            form.set('name',this.registerForm.name+'-'+this.singerName);
+            if(!this.registerForm.lyric){
                 form.set('lyric','[00:00:00]暂无歌词');
+            }else{
+                form.set('lyric',this.registerForm.lyric);
             }
+            
             var req = new XMLHttpRequest();
             req.onreadystatechange = function(){
                 //req.readyState == 4 获取到返回的完整数据
@@ -307,14 +307,21 @@ export default {
         //上传歌曲之前的校验
         beforeSongUpload(file){
             var testMsg = file.name.substring(file.name.lastIndexOf('.') + 1);
-            if(testMsg!='mp3'){
+            if(testMsg=='flac'){
+                return true;
+                
+            }else if(testMsg=='mp3'){
+                return true;
+            }else if(testMsg=='m4a'){
+                return true;
+            }
+            else{
                 this.$message({
                     message: '上传文件只能是mp3格式',
                     type: 'error'
                 });
                 return false;
             }
-            return true;
         },
         //上传歌曲成功之后要做的工作
         handleSongSuccess(res){
@@ -336,6 +343,7 @@ export default {
         uploadSongUrl(id){
             return `${this.$store.state.HOST}/song/updateSongUrl?id=${id}`
         },
+
         //切换播放歌曲
         setSongUrl(url,name) {
             this.toggle = name;

@@ -175,7 +175,7 @@ export default {
         addSongList(){
             let params = new URLSearchParams();
             params.append('title',this.registerForm.title);
-            params.append('pic','/img/songListPic/123.jpg');
+            params.append('pic','/img/songListPic/list.jpg');
             params.append('introduction',this.registerForm.introduction);
             params.append('style',this.registerForm.style);
 

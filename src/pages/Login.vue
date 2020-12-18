@@ -4,7 +4,7 @@
     <div class="ms-login">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
         <el-form-item prop="username">
-          <el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
+          <el-input  v-model="ruleForm.username" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input type="password" v-model="ruleForm.password" placeholder="密码"></el-input>
@@ -25,8 +25,8 @@ export default {
   data: function(){
     return {
       ruleForm:{
-        username: "admin",
-        password: "123"
+        username: "",
+        password: ""
       },
       rules:{
         username:[
@@ -88,7 +88,9 @@ export default {
   margin-top: -150px;
   padding: 40px;
   border-radius: 5px;
-  background: #fff;
+  /* background: #fff; */
+  background: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,1);
 }
 .login-btn {
   text-align: center;
@@ -97,4 +99,5 @@ export default {
   width: 100%;
   height: 36px;
 }
+
 </style>

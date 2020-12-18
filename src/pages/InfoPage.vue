@@ -52,7 +52,7 @@
             <el-col :span="12">
                 <h3 class="mgb20">歌曲类型分布</h3>
                 <div style="background-color:white">
-                    <ve-histogram :data="songStyle"></ve-histogram>
+                    <ve-histogram :data="songStyle" :theme="optionA"></ve-histogram>
                 </div>
             </el-col>
         </el-row>
@@ -66,9 +66,9 @@
             <el-col :span="12">
                 <h3 class="mgb20">歌手地区分布</h3>
                 <div style="background-color:white">
-                    <ve-histogram :data="country" :theme="options1"></ve-histogram>
+                    <ve-histogram :data="location"></ve-histogram>
                 </div>
-            </el-col>
+            </el-col>A
         </el-row>
     </div>
 </template>
@@ -92,8 +92,8 @@ export default {
             options: {
                 color: ['#87cefa','#ffc0cb']
             },
-            options1: {
-                color: ['teal']
+            optionA: {
+                color: ['rgb(245, 133, 133)']
             },
             songStyle:{           //按歌单风格分类
                 columns: ['风格','总数'],
@@ -118,7 +118,7 @@ export default {
                     {'性别': '不明','总数': 0}
                 ]
             },
-            country:{
+            location:{
                 columns: ['地区','总数'],
                 rows: [
                     {'地区': '大陆','总数': 0},
@@ -174,7 +174,7 @@ export default {
                 this.singerSex.rows[2]['总数'] = this.setSex(2,res);
                 this.singerSex.rows[3]['总数'] = this.setSex(3,res);
                 for(let item of res){
-                    this.getByCountry(item.location);
+                    this.getBylocation(item.location);
                 }
             })
         },
@@ -194,8 +194,8 @@ export default {
                 }
             }
         },
-        getByCountry(location) {              //根据地区获取数量
-            for(let item of this.country.rows){
+        getBylocation(location) {              //根据地区获取数量
+            for(let item of this.location.rows){
                 if(location.includes(item['地区'])){
                     item['总数']++;
                 }

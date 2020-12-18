@@ -109,7 +109,7 @@ export default {
         //添加歌曲前的准备，获取到歌曲id        
         getSongId(){
             let _this = this;
-            var songOfName = _this.registerForm.singerName+"-"+_this.registerForm.songName;
+            var songOfName = _this.registerForm.songName+"-"+_this.registerForm.singerName;
             songOfSongName(songOfName).then(
                 res => {
                     _this.addSong(res[0].id)
