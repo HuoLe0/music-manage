@@ -27,6 +27,8 @@ export const delSong = (id) => get(`song/delete?id=${id}`);
 export const songOfSongId =(id) => get(`song/selectByPrimaryKey?id=${id}`);
 //根据歌曲名获取歌曲对象
 export const songOfSongName =(name) => get(`song/songOfName?name=${name}`);
+//根据歌曲名获取歌曲对象
+export const songLikeName =(name) => get(`song/songLikeName?name=${name}`);
 //查询所有歌曲
 export const allSong =() => get(`song/allSong`);
 

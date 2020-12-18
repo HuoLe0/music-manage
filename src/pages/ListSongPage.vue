@@ -45,7 +45,7 @@
 
 <script>
 import { mixin } from '../mixins/index';
-import {listSongDetail,songOfSongId,songOfSongName,listSongAdd,delListSong} from '../api/index';
+import {listSongDetail,songOfSongId,songOfSongName,listSongAdd,delListSong,songLikeName} from '../api/index';
 
 export default {
     mixins: [mixin],
@@ -110,7 +110,7 @@ export default {
         getSongId(){
             let _this = this;
             var songOfName = _this.registerForm.songName+"-"+_this.registerForm.singerName;
-            songOfSongName(songOfName).then(
+            songLikeName(songOfName).then(
                 res => {
                     _this.addSong(res[0].id)
                 }
