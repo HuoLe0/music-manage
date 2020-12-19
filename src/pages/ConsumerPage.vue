@@ -320,7 +320,7 @@ export default {
         },
         //更新图片
         uploadUrl(id){
-            return `${this.$store.state.HOST}/consumer/updateConsumerPic?id=${id}`
+            return `${this.$store.state.HOST}/consumer/updateConsumerAvator?id=${id}`
         },
         //删除一名用户
         deleteRow(){
