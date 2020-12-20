@@ -85,6 +85,9 @@
                 </el-form-item>     
                 <el-form-item prop="lyric" label="歌词" size="mini">
                     <el-input v-model="registerForm.lyric" placeholder="歌词" type="textarea"></el-input>
+                </el-form-item>
+                <el-form-item label="上传封面" size="mini">
+                    <input type="file" name="pic">
                 </el-form-item> 
                 <el-form-item label="上传歌曲" size="mini">
                     <input type="file" name="file">
