@@ -86,6 +86,9 @@
                 <el-form-item prop="lyric" label="歌词" size="mini">
                     <el-input v-model="registerForm.lyric" placeholder="歌词" type="textarea"></el-input>
                 </el-form-item>
+                <el-form-item prop="mv" label="MV" size="mini">
+                    <el-input v-model="registerForm.mv" placeholder="MV"></el-input>
+                </el-form-item>
                 <el-form-item label="上传封面" size="mini">
                     <input type="file" name="pic">
                 </el-form-item> 
@@ -110,7 +113,9 @@
                 <el-form-item prop="lyric" label="歌词" size="mini">
                     <el-input v-model="form.lyric" placeholder="歌词" type="textarea"></el-input>
                 </el-form-item> 
-                
+                <el-form-item prop="mv" label="MV" size="mini">
+                    <el-input v-model="form.mv" placeholder="MV"></el-input>
+                </el-form-item> 
             </el-form>
             <span slot="footer">
                 <el-button size="mini" @click="editVisible = false">取消</el-button>
@@ -147,13 +152,15 @@ export default {
                 name: '',
                 singerName: '',                
                 introduction: '',
-                lyric: ''
+                lyric: '',
+                mv:''
             },
             form:{      //编辑框
                 id: '',
                 name: '',
                 introduction: '',
-                lyric: ''
+                lyric: '',
+                mv:''
             },
             tableData: [],
             tempData: [],
@@ -251,7 +258,8 @@ export default {
                 id: row.id,
                 name: row.name,
                 introduction: row.introduction,
-                lyric: row.lyric
+                lyric: row.lyric,
+                mv: row.mv
             }
         },
         //保存编辑页面修改的数据
@@ -261,6 +269,7 @@ export default {
             params.append('name',this.form.name);
             params.append('introduction',this.form.introduction);
             params.append('lyric',this.form.lyric);
+            params.append('mv',this.form.mv);
 
             updateSong(params)
             .then(res => {
