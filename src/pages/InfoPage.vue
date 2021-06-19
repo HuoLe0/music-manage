@@ -151,6 +151,7 @@ export default {
     methods: {
         getConsumer() {                     //用户总数
             getAllConsumer().then(res => {
+                res = res.data;
                 this.consumer = res;
                 this.consumerCount = res.length;
                 this.consumerSex.rows[0]['总数'] = this.setSex(1,this.consumer);
@@ -168,11 +169,13 @@ export default {
         },
         getSong() {                      //歌曲总数
             allSong().then(res => {
+                res = res.data;
                 this.songCount = res.length;
             })
         },
         getSinger() {                      //歌手数量
             getAllSinger().then(res => {
+                res = res.data;
                 this.singerCount = res.length;
                 this.singerSex.rows[0]['总数'] = this.setSex(0,res);
                 this.singerSex.rows[1]['总数'] = this.setSex(1,res);
@@ -186,6 +189,7 @@ export default {
 
         getSongList() {                    //歌单数量
             getAllSongList().then(res => {
+                res = res.data;
                 this.songListCount = res.length;
                 for(let item of res){
                     this.getByStyle(item.style);

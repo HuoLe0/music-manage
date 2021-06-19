@@ -70,6 +70,7 @@ export default {
             this.tempData = [];
             this.tableData = [];
             getCollectOfUserId(this.$route.query.id).then(res => {
+                res = res.data;
                 for(let item of res){
                     this.getSong(item.songId);
                 }
@@ -79,6 +80,7 @@ export default {
         getSong(id){
             songOfSongId(id)
             .then(res => {
+                res = res.data;
                 this.tempData.push(res);
                 this.tableData.push(res);
             })
@@ -90,6 +92,7 @@ export default {
         deleteRow(){
             deleteCollection(this.$route.query.id,this.idx.id)
             .then(res => {
+                res = res.data;
                 if(res){
                     this.getData();
                     this.notify("删除成功","success");

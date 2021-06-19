@@ -90,6 +90,7 @@ export default {
             this.tempData = [];
             this.tableData = [];
             listSongDetail(this.songListId).then(res => {
+                res = res.data;
                 for(let item of res){
                     this.getSong(item.songId);
                 }
@@ -99,6 +100,7 @@ export default {
         getSong(id){
             songOfSongId(id)
             .then(res => {
+                res = res.data;
                 this.tempData.push(res);
                 this.tableData.push(res);
             })
@@ -112,6 +114,7 @@ export default {
             var songOfName = _this.registerForm.songName+"-"+_this.registerForm.singerName;
             songLikeName(songOfName).then(
                 res => {
+                    res = res.data;
                     _this.addSong(res[0].id)
                 }
             )

@@ -197,6 +197,7 @@ export default {
             this.tempData = [];
             this.tableData = [];
             getAllSinger().then(res => {
+                res = res.data;
                 this.tempData = res;
                 this.tableData = res;
                 this.currentPage = 1;

@@ -232,6 +232,7 @@ export default {
             this.tempData = [];
             this.tableData = [];
             getAllConsumer().then(res => {
+                res = res.data;
                 this.tempData = res;
                 this.tableData = res;
                 this.currentPage = 1;

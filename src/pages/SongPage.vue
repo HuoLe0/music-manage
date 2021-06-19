@@ -214,6 +214,7 @@ export default {
             this.tempData = [];
             this.tableData = [];
             songOfSingerId(this.singerId).then(res => {
+                res = res.data;
                 this.tempData = res;
                 this.tableData = res;
                 this.currentPage = 1;
@@ -225,6 +226,7 @@ export default {
             var form = new FormData(document.getElementById('tf'));
             form.append('singerId',this.singerId);
             form.append('introduction',this.registerForm.introduction)
+            form.append('mv',this.registerForm.mv)
             form.set('name',this.registerForm.name+'-'+this.singerName);
             if(!this.registerForm.lyric){
                 form.set('lyric','[00:00:00]暂无歌词');
