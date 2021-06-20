@@ -50,7 +50,7 @@
                 layout = "total,prev,pager,next"
                 :current-page="currentPage"
                 :page-size="pageSize"
-                :total="tableData.length"
+                :total="totalNum"
                 @current-change="handleCurrentChange"
                 >
             </el-pagination>
@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import {getAllSongList,setSongList,updateSongList,delSongList} from '../api/index';
+import {getAllSongList,setSongList,updateSongList,delSongList, getSingerByPager, getSongListByPager} from '../api/index';
 import { mixin } from '../mixins/index';
 export default {
     mixins: [mixin],
@@ -129,13 +129,14 @@ export default {
             pageSize: 5,    //分页每页大小
             currentPage: 1,  //当前页
             idx: -1,          //当前选择项
-            multipleSelection: []   //哪些项已经打勾
+            multipleSelection: [],   //哪些项已经打勾
+            totalNum: 0, //总数量
         }
     },
     computed:{
         //计算当前搜索结果表里的数据
         data(){
-            return this.tableData.slice((this.currentPage - 1) * this.pageSize,this.currentPage * this.pageSize)
+            return this.tableData;
         }
     },
     watch:{
@@ -160,15 +161,22 @@ export default {
         //获取当前页
         handleCurrentChange(val){
             this.currentPage = val;
+            getSongListByPager(this.currentPage, this.pageSize)
+            .then(res => {
+                this.totalNum = res.data.total;
+                this.tempData = res.data.rows;
+                this.tableData = res.data.rows;
+            })
         },
         //查询所有歌单
         getData(){
             this.tempData = [];
             this.tableData = [];
-            getAllSongList().then(res => {
-                res = res.data;
-                this.tempData = res;
-                this.tableData = res;
+            getSongListByPager(this.currentPage, this.pageSize)
+            .then(res => {
+                this.totalNum = res.data.total;
+                this.tempData = res.data.rows;
+                this.tableData = res.data.rows;
                 this.currentPage = 1;
             })
         },

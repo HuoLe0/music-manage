@@ -7,6 +7,8 @@ export const getLoginStatus = (params) => post(`admin/login/status`,params);
 //============歌手相关================
 //查询歌手
 export const getAllSinger =() => get(`singer/selectAll`);
+//分页歌手
+export const getSingerByPager = (page,size) => get(`singer/selectByPager?page=${page}&size=${size}`);
 //添加歌手
 export const setSinger = (params) => post(`singer/add`,params);
 //编辑歌手
@@ -16,7 +18,7 @@ export const delSinger = (id) => get(`singer/delete?id=${id}`);
 
 //============歌曲相关================
 //根据歌手id查询歌曲
-export const songOfSingerId =(id) => get(`song/selectBySingerId?singerId=${id}`);
+export const songOfSingerId = (id,page,size) => get(`song/selectBySingerId?singerId=${id}&page=${page}&size=${size}`);
 //更新歌曲
 export const updateSongUrl = (id) => post(`song/updateSongUrl?id=${id}`);
 //编辑歌曲
@@ -35,6 +37,8 @@ export const allSong =() => get(`song/selectAll`);
 //============歌单相关================
 //查询歌单
 export const getAllSongList =() => get(`songList/selectAll`);
+//分页歌单
+export const getSongListByPager = (page,size) => get(`songList/selectByPager?page=${page}&size=${size}`);
 //添加歌单
 export const setSongList = (params) => post(`songList/add`,params);
 //编辑歌单
